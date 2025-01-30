@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day, My Love! ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Great Vibes', cursive;
+            background: #ffebee;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 50px 0;
+            background: #ff758c;
+            color: white;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 4em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px 0;
+        }
+
+        .photo-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .photo-card:hover {
+            transform: scale(1.05);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .music-player {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #ff758c;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff758c;
+            animation: fall 10s linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        .love-note {
+            text-align: center;
+            font-size: 1.5em;
+            line-height: 1.6;
+            margin: 40px 0;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="hearts" id="hearts-container"></div>
+    
+    <header class="header">
+        <h1>Happy Valentine's Day, My Love! ❤️</h1>
+    </header>
+
+    <div class="container">
+        <div class="love-note">
+            <p>To the most amazing woman in my life,</p>
+            <p>Every moment with you feels like a beautiful dream. You light up my world in ways I never imagined possible. Happy Valentine's Day, my forever love! 🌹</p>
+        </div>
+
+        <div class="photo-gallery">
+            <!-- Add your photos here -->
+            <div class="photo-card">
+                <img src="1pic.jpg" alt="Our Memory 1">
+            </div>
+            <div class="photo-card">
+                <img src="8.jpg" alt="Our Memory 2">
+            </div>
+            <div class="photo-card">
+                <img src="6.jpg" alt="Our Memory 3">
+            </div>
+        </div>
+
+        <div class="music-player">
+            <h2>Our Song 💖</h2>
+            <audio id="our-song" src="music.mp3"></audio>
+            <div class="player-controls">
+                <button class="play-btn" id="play-btn">▶</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create falling hearts
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts-container');
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤';
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDelay = Math.random() * 10 + 's';
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Music player controls
+        const audio = document.getElementById('our-song');
+        const playBtn = document.getElementById('play-btn');
+        let isPlaying = false;
+
+        playBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                playBtn.textContent = '▶';
+            } else {
+                audio.play();
+                playBtn.textContent = '⏸';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // Initialize falling hearts
+        createHearts();
+
+        // Add hover effect to photo cards
+        document.querySelectorAll('.photo-card').forEach(card => {
+            card.addEventListener('mouseover', () => {
+                card.style.transform = 'scale(1.05) rotate(2deg)';
+            });
+            
+            card.addEventListener('mouseout', () => {
+                card.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+    </script>
+</body>
+</html>
